@@ -2,11 +2,21 @@
   "name": "backend-07",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "npx nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }
