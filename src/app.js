@@ -1,8 +1,11 @@
 const express = require('express');
 const session = require('express-session');
 const cookie = require('cookie-parser');
+const bcrypt = require('bcrypt');
 
 const app = express();
+
+const hash = "$2b$10$yKZNxUIRdckyutdS3KnYmusTj1T1uDcrKnBcsuYeSRufoErDZTLFG";
 
 app.use(session({
     secret: '123456789', // Pueden poner cualquier cosa
@@ -53,6 +56,26 @@ app.get('/set-session', (req, res) => {
 
 });
 
+
+app.get('/hash-password', (req, res) => {
+
+    const { password } = req.query;
+
+    const passwordHashed = bcrypt.hashSync(password, 10);
+
+    return res.send(passwordHashed);
+
+});
+
+app.get('/validate-password', (req, res) => {
+
+    const { password } = req.query;
+
+    const isValid = bcrypt.compareSync(password, hash);
+
+    return res.send(isValid);
+
+})
 
 
 app.listen(3000, () => console.log('Servidor en el puerto 3000'));
